@@ -12,11 +12,6 @@
         <module>Generic</module>
         <module>Ebay</module>
         <module>Amazon</module>
-        <module>Alibaba</module>
-        <module>BedBathBeyond</module>
-        <module>Facebook</module>
-        <module>Target</module>
-        <module>HomeDepot</module>
     </modules>
 
     <dependencyManagement>
