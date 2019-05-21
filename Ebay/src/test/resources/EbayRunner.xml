@@ -16,6 +16,7 @@
     <test name="eBay Home">
         <classes>
             <class name="testSignIn.TestSignInProcess"/>
+            <class name="TestHomePage.TestHomePage"/>
 
         </classes>
     </test>

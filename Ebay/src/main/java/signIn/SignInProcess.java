@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+
 public class SignInProcess extends CommonAPI {
 
     @FindBy(how = How.LINK_TEXT, using = "Sign in")
@@ -96,7 +97,7 @@ public class SignInProcess extends CommonAPI {
     public String tempPasswordPassed(String email) {
         signInButton.click();
         temporaryPassword.click();
-        emailTemporary.sendKeys(email,Keys.ENTER);
+        emailTemporary.sendKeys(email, Keys.ENTER);
         return tempSuccess.getText();
     }
 
@@ -110,28 +111,34 @@ public class SignInProcess extends CommonAPI {
     }
 
     public boolean staySigned() {
-    signInButton.click();
-    return staySignedin.isSelected();
+        signInButton.click();
+        return staySignedin.isSelected();
     }
 
-    public String resetPasswordValid(String email){
+    public String resetPasswordValid(String email) {
         signInButton.click();
         resetPassword.click();
         resetEmail.sendKeys(email);
         submitReset.click();
         return resetSuccess.getText();
-        }
+    }
 
-    public String resetPasswordInvalid(String email){
+    public String resetPasswordInvalid(String email) {
         signInButton.click();
         resetPassword.click();
-        resetEmail.sendKeys(email,Keys.ENTER);
+        resetEmail.sendKeys(email, Keys.ENTER);
         return resetFailed.getText();
     }
 
-    public boolean greet(){
+    public boolean greet() {
         signInButton.click();
         return greetings.isDisplayed();
     }
+
+    public String learnMore() {
+        signInButton.click();
+        return learnMore.getText();
+    }
+
 
 }
