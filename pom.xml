@@ -11,6 +11,9 @@
     <modules>
         <module>Generic</module>
         <module>Ebay</module>
+        <module>costco</module>
+        <module>Amazon</module>
+
     </modules>
 
     <dependencyManagement>
