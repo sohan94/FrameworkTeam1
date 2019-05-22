@@ -22,6 +22,8 @@ public class CreateAccountAmazon extends CommonAPI {
     WebElement reEnterPassword;
     @FindBy (css = "input[id='continue']")
     WebElement createAcctButtoninCreate;
+    @FindBy (css = "a[class='a-link-emphasis']")
+    WebElement signInlinkinCreatePage;
 
     public void gotoCreateAccountPage()
     {
@@ -38,5 +40,12 @@ public class CreateAccountAmazon extends CommonAPI {
         reEnterPassword.sendKeys(userpassword);
         createAcctButtoninCreate.click();
         sleepFor(5);
+    }
+
+    public String AlreadyHaveAnAcctLink()
+    {
+        signInlinkinCreatePage.click();
+        String title =driver.getTitle();
+        return title;
     }
 }

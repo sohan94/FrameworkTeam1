@@ -62,8 +62,6 @@ public class SigninAmazonTest extends CommonAPI {
     {
         sign.gotosignInPage();
         sign.signInInvalid("sohan","rifat");
-
-
     }
     //check SignIn with valid user and password
     @Test (enabled = false)
@@ -80,5 +78,4 @@ public class SigninAmazonTest extends CommonAPI {
         String title =sign.AmazonCreateAccount();
         Assert.assertEquals(title,"Amazon Registration");
     }
-
 }

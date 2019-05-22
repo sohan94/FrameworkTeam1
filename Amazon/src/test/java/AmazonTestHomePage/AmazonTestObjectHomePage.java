@@ -3,6 +3,7 @@ package AmazonTestHomePage;
 import AmazonHomePage.AmazonObjectHomePage;
 import base.CommonAPI;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,15 +18,55 @@ public class AmazonTestObjectHomePage extends CommonAPI {
     }
 
     @Test (enabled = false)
-    public void searchBarInputTest() throws InterruptedException {
-        obj1.searchBarInput();
+    public void searchBarInputTest() throws InterruptedException
+    {
+        obj1.searchBarInput("Headphones");
     }
 
-    @Test
+    @Test (enabled = false)
     public void AllDropdownHomepageTest()
     {
-        obj1.AllDropdownHomepage("Alexa Skills");
+        obj1.AllDropdownHomepage("Computers");
     }
+
+    @Test (enabled = false)
+    public void DropdownAndSearch() throws InterruptedException {
+         obj1.AllDropdownHomepage("Computers");
+         obj1.searchBarInput("Mac 2019");
+
+    }
+    @Test (enabled = false)
+    public void TabsunderSearcbar()
+    {
+        obj1.TabsunderSearcbar("buy again");
+    }
+    @Test (enabled = false)
+    public void GetreadyforSummerListtest()
+    {
+        obj1.GetreadyforSummerList("health");
+    }
+    @Test (enabled = false)
+    public void hoveroverLanguage()
+    {
+        obj1.hoveroverLanguage();
+    }
+    @Test (enabled = false)
+    public void icononHomepageTest()
+    {
+        obj1.icononHomepage();
+    }
+    @Test
+    public void onetabfromiconTest()
+    {
+        obj1.icononHomepage();
+        Assert.assertEquals(obj1.onetabfromicon(),"Amazon.com: Books");
+    }
+
+
+
+
+
+
  /*   @DataProvider
     public Object[][] Info()
     {

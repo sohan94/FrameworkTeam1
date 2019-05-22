@@ -67,6 +67,7 @@ public class SigninAmazon extends CommonAPI {
         pass.sendKeys(password);
         sleepFor(5);
         signInPagebutton.click();
+
     }
     public String signInValid(String username, String password)
     {
