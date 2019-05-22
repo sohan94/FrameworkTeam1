@@ -282,7 +282,7 @@ public class CommonAPI {
      * @param Seconds The seconds that the thread must wait
      * @Author - peoplenTech
      */
-    public void sleepFor(int Seconds) {
+    public static void sleepFor(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (Exception e) {
