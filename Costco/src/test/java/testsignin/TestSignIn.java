@@ -27,10 +27,53 @@ public class TestSignIn extends CommonAPI {
         Assert.assertEquals(signIn.checksign(),"Sign In");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testchecktest(){
         signIn.checksign();
         signIn.checktext();
     }
 
-}
+    @Test(enabled = false)
+    public void testemail(){
+        signIn.checksign();
+        signIn.emailaddress("daljeet@gmail.com","12345");
+    }
+
+    @Test(enabled = false)
+    public void test2email(){
+        signIn.checksign();
+        signIn.emailaddress2("sohan@gmail.com", "34567");
+    }
+
+    @Test(enabled = false)
+    public void testrememberme(){
+        signIn.checksign();
+        signIn.clickrememberme("jannat@gmail.com", "3456789");
+    }
+
+    @Test(enabled = false)
+    public void testforgot(){
+        signIn.checksign();
+        signIn.forgotpass("jeff@gmail.com");
+    }
+
+    @Test(enabled = false)
+    public void testreset(){
+        signIn.checksign();
+        signIn.reset("winsen@gmail.com");
+    }
+
+    @Test(enabled = false)
+    public void testprinting(){
+        signIn.checksign();
+        signIn.pritingpass("sahin@gmail.com");
+    }
+
+    @Test(enabled = false)
+    public void testsetcostco(){
+        signIn.checksign();
+        signIn.setCostco();
+    }
+    }
+
+
