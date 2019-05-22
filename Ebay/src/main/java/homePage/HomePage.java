@@ -121,6 +121,10 @@ public class HomePage extends CommonAPI {
     WebElement categories;
 
 
+    @FindBy(className = "b-img")
+    public WebElement rolex;
+
+
 
     public String productSearch(String word) {
         searchBar.sendKeys(word, Keys.ENTER);
@@ -194,6 +198,14 @@ public class HomePage extends CommonAPI {
         return driver.getTitle();
     }
 
+    public void selectingRolex(){
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(fashion).perform();
+        Watches.click();
+        rolex.click();
+    }
+
 
     public String changeCountry(String country) {
         Actions actions = new Actions(driver);
@@ -260,32 +272,6 @@ public class HomePage extends CommonAPI {
         }
     }
 
-
-    @FindBy(linkText = "Shop Watches")
-    public WebElement shopWatches;
-
-    @FindBy(className = "b-img")
-    public WebElement rolex;
-
-    @FindBy(xpath = "//*[@id=\"w5-xCarousel-x-carousel-items\"]/ul/li[1]/a/p")
-    public WebElement sorting;
-
-    @FindBy(xpath = "//*[@class='b-img']")
-    public WebElement sortbox;
-
-    @FindBy(className = "srp-controls--selected-value")
-    public WebElement dropDown;
-
-    @FindBy(linkText = "Time: newly listed")
-    public WebElement newly;
-
-    public void selectingRolex(){
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(fashion).perform();
-        Watches.click();
-        rolex.click();
-    }
 
 
 }

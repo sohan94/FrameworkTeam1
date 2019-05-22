@@ -92,7 +92,7 @@ public class TestSignInProcess extends CommonAPI {
         System.out.println("Learn more is displayed");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void addFolder(){
         Assert.assertEquals(sign.folderInMessages("ytpromo75@gmail.com", "besides11/"), true);
         System.out.println("New folder is created");

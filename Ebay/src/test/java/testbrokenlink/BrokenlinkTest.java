@@ -19,7 +19,7 @@ public class BrokenlinkTest extends CommonAPI {
         driver.get(url);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCnnActivlinks() throws IOException {
         brokenLin.linksbroken();
     }

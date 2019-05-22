@@ -191,10 +191,10 @@ public class SignInProcess extends CommonAPI {
         message.click();
         addFolder.click();
         defaulfFolder.clear();
-        defaulfFolder.sendKeys("New Folder", Keys.ENTER);
+        defaulfFolder.sendKeys("New Folder 3", Keys.ENTER);
+        sleepFor(2);
         return checkFolder.isDisplayed();
+
     }
-
-
 
 }
