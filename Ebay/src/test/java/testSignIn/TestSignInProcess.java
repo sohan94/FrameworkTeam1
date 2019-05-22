@@ -18,9 +18,9 @@ public class TestSignInProcess extends CommonAPI {
 
     @Test(enabled = false)
     public void checkValidSignIn() {
-        String success = sign.validSignIn("user11", "pass11");
-        Assert.assertEquals(success, "https://www.ebay.com/");
-        System.out.println("Sign in with valid credential passed");
+      String success = sign.validSignIn("user11", "pass11");
+      Assert.assertEquals(success, "https://www.ebay.com/");
+      System.out.println("Sign in with valid credential passed");
     }
 
     @Test(enabled = false)
@@ -92,6 +92,11 @@ public class TestSignInProcess extends CommonAPI {
         System.out.println("Learn more is displayed");
     }
 
+    @Test(enabled = false)
+    public void addFolder(){
+        Assert.assertEquals(sign.folderInMessages("ytpromo75@gmail.com", "besides11/"), true);
+        System.out.println("New folder is created");
+    }
 
 
 
