@@ -12,7 +12,10 @@
         <module>Generic</module>
         <module>Ebay</module>
         <module>homeDepot</module>
-        <module>Expedia</module>
+        <module>costco</module>
+        <module>Amazon</module>
+
+
     </modules>
 
     <dependencyManagement>
