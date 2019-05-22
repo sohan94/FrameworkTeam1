@@ -15,7 +15,10 @@
 
     <test name="Costco Home">
         <classes>
-            <class name="testsignin.TestSignIn"/>
+            <!--class name="testcreateaccount.TestCreateAccount"/-->
+            <!--class name="testhomepage.TestHomePage"/-->
+            <!--class name="testbrokenlink.BrokenlinksTest"/-->
+            <class name="testcart.TestCart"/>
 
 
 
