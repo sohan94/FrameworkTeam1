@@ -54,6 +54,9 @@ public class HomePage extends CommonAPI {
     @FindBy(xpath = "//*[@for = 'warehouse-search-field-desktop']")
     public WebElement address;
 
+    @FindBy(xpath = "//*[@id=\"hero-carousel\"]/button[1]")
+    public WebElement arrowclick;
+
 
 
 
@@ -165,5 +168,11 @@ public class HomePage extends CommonAPI {
         sleepFor(4);
         System.out.println(address.getText());
         searchWH.sendKeys(anyparameter);
+    }
+
+    public void arrow(){
+        arrowclick.click();
+        arrowclick.click();
+
     }
 }
