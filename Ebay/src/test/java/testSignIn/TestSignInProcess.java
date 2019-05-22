@@ -1,12 +1,13 @@
 package testSignIn;
 
+import base.CommonAPI;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import signIn.SignInProcess;
 
-public class TestSignInProcess extends SignInProcess {
+public class TestSignInProcess extends CommonAPI {
 
     SignInProcess sign;
 
@@ -67,7 +68,7 @@ public class TestSignInProcess extends SignInProcess {
         System.out.println("Stay signed in button is selected");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void resetPass(){
         Assert.assertEquals(sign.resetPasswordValid("jannatsaikat@gmail.com"),"Email");
         System.out.println("Resetting password is successfull");
@@ -84,6 +85,14 @@ public class TestSignInProcess extends SignInProcess {
         Assert.assertEquals(sign.greet(),true);
         System.out.println("The greetings is displayed");
     }
+
+    @Test(enabled = false)
+    public void testLearnMore(){
+        Assert.assertEquals(sign.learnMore(),"Learn more");
+        System.out.println("Learn more is displayed");
+    }
+
+
 
 
 }

@@ -108,8 +108,8 @@ public class CommonAPI {
             System.setProperty("webdriver.chrome.driver", "../Generic/src/main/resources/drivers/chromedriver.exe");
         }
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(2000, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
@@ -282,7 +282,7 @@ public class CommonAPI {
      * @param Seconds The seconds that the thread must wait
      * @Author - peoplenTech
      */
-    public void sleepFor(int Seconds) {
+    public static void sleepFor(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (Exception e) {
