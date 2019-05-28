@@ -43,7 +43,7 @@ public class CommonAPI {
     //Extent Report Setup
     public static ExtentReports extent;
 
-    //screenshot
+    //screenshot Used
     public static void captureScreenshot(WebDriver driver, String screenshotName) {
 
         DateFormat df = new SimpleDateFormat("(MM.dd.yyyy-HH:mma)");
@@ -61,9 +61,13 @@ public class CommonAPI {
 
     }
 
+
+
     @Parameters({"platform", "url", "browser", "cloud", "browserVersion", "envName"})
     @BeforeMethod
+
     public static WebDriver setupDriver(@Optional String platform, @Optional String url, @Optional("chrome") String browser, @Optional("false") boolean cloud, String browserVersion, String envName) throws MalformedURLException {
+
         if (cloud) {
             driver = getCloudDriver(browser, browserVersion, platform, envName);
         } else {
@@ -100,7 +104,7 @@ public class CommonAPI {
      * @param platform platform name
      * @return WebDriver webdriver instance for the driver
      * @Author - peoplenTech
-     */
+     */ //Used
     public static WebDriver getLocalDriver(String browser, String platform) {
         if (platform.equalsIgnoreCase("mac") && browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "../Generic/src/main/resources/drivers/chromedriver");
@@ -108,8 +112,8 @@ public class CommonAPI {
             System.setProperty("webdriver.chrome.driver", "../Generic/src/main/resources/drivers/chromedriver.exe");
         }
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(2000, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
@@ -119,7 +123,7 @@ public class CommonAPI {
      *
      * @param driver The webdriver instance
      * @Author - peoplenTech
-     */
+     */ //Used
     public static void getScreenshot(WebDriver driver) {
         DateFormat df = new SimpleDateFormat("(MM.dd.yyyy-HH:mma)");
         Date date = new Date();
@@ -138,6 +142,8 @@ public class CommonAPI {
         return splitString;
     }
 
+
+    //Used
     public static List<String> getTextFromWebElements(String locator) {
         List<WebElement> element = new ArrayList<WebElement>();
         List<String> text = new ArrayList<String>();
@@ -150,12 +156,14 @@ public class CommonAPI {
 
     }
 
+    //Used
     public static List<WebElement> getListOfWebElementsByCss(String locator) {
         List<WebElement> list = new ArrayList<WebElement>();
         list = driver.findElements(By.cssSelector(locator));
         return list;
     }
 
+    //Used
     public static List<WebElement> getListOfWebElementsByCss(String locator, WebDriver driver1) {
         List<WebElement> list = new ArrayList<WebElement>();
         list = driver1.findElements(By.cssSelector(locator));
@@ -163,18 +171,22 @@ public class CommonAPI {
     }
 
     //Handling New Tabs
+
     public static WebDriver handleNewTab(WebDriver driver) {
         String oldTab = driver.getWindowHandle();
         List<String> newTabs = new ArrayList<String>(driver.getWindowHandles());
+
         newTabs.remove(oldTab);
         driver.switchTo().window(newTabs.get(0));
         return driver;
     }
 
+    //used
     public static boolean isPopUpWindowDisplayed(WebDriver driver1, String locator) {
         boolean value = driver1.findElement(By.cssSelector(locator)).isDisplayed();
         return value;
     }
+
 
     public static void typeOnElementNEnter(String locator, String value) {
         try {
@@ -195,6 +207,7 @@ public class CommonAPI {
         }
     }
 
+    //used
     public static void typeOnElementNEnter(String locator, String value, WebDriver driver1) {
         try {
             driver1.findElement(By.cssSelector(locator)).sendKeys(value, Keys.ENTER);
@@ -282,7 +295,7 @@ public class CommonAPI {
      * @param Seconds The seconds that the thread must wait
      * @Author - peoplenTech
      */
-    public void sleepFor(int Seconds) {
+    public static void sleepFor(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (Exception e) {
@@ -337,6 +350,7 @@ public class CommonAPI {
     public void clearInputField(String locator) {
         driver.findElement(By.cssSelector(locator)).clear();
     }
+
 
     public List<WebElement> getListOfWebElementsById(String locator) {
         List<WebElement> list = new ArrayList<WebElement>();
