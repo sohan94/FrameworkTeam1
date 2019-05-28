@@ -39,7 +39,7 @@ public class CommonAPI {
     public static final String SAUCE_AUTOMATE_KEY = "";
     public static final String BROWSERSTACK_URL = "https://" + BROWSERSTACK_USERNAME + ":" + BROWSERSTACK_AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     public static final String SAUCE_URL = "https://" + SAUCE_USERNAME + ":" + SAUCE_AUTOMATE_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-    public static WebDriver driver = null;
+    public static WebDriver driver;
     //Extent Report Setup
     public static ExtentReports extent;
 
@@ -65,8 +65,9 @@ public class CommonAPI {
 
     @Parameters({"platform", "url", "browser", "cloud", "browserVersion", "envName"})
     @BeforeMethod
-    //Used
-    public static WebDriver setupDriver(String platform, String url, @Optional("chrome") String browser, @Optional("false") boolean cloud, String browserVersion, String envName) throws MalformedURLException {
+
+    public static WebDriver setupDriver(@Optional String platform, @Optional String url, @Optional("chrome") String browser, @Optional("false") boolean cloud, String browserVersion, String envName) throws MalformedURLException {
+
         if (cloud) {
             driver = getCloudDriver(browser, browserVersion, platform, envName);
         } else {
@@ -111,8 +112,8 @@ public class CommonAPI {
             System.setProperty("webdriver.chrome.driver", "../Generic/src/main/resources/drivers/chromedriver.exe");
         }
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(2000, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
@@ -293,7 +294,7 @@ public class CommonAPI {
      * @param Seconds The seconds that the thread must wait
      * @Author - peoplenTech
      */
-    public void sleepFor(int Seconds) {
+    public static void sleepFor(int Seconds) {
         try {
             Thread.sleep(Seconds * 1000);
         } catch (Exception e) {
