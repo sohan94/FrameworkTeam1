@@ -38,17 +38,13 @@ public class TestSignInProcess extends CommonAPI {
     }
 
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void checkFB() {
-        Assert.assertEquals(sign.signInFB(), true);
+        sign.signInFB();
         System.out.println("Facebook signin button is working");
     }
 
-    @Test(enabled = false) //5
-    public void checkGGL() {
-        Assert.assertEquals(sign.signInGoogle(), "Sign in with Google");
-        System.out.println("Google button works fine");
-    }
+
 
     @Test(enabled = false)
     public void tempPass() {
@@ -74,11 +70,6 @@ public class TestSignInProcess extends CommonAPI {
         System.out.println("Resetting password is successfull");
     }
 
-    @Test(enabled = false) //10
-    public void resetPassFail(){
-        Assert.assertEquals(sign.resetPasswordInvalid("user111@gmail.com"), "Oops, that's not a match. Try again?");
-        System.out.println("Resetting password Failed");
-    }
 
     @Test(enabled = false)
     public void greetShow(){
@@ -92,12 +83,27 @@ public class TestSignInProcess extends CommonAPI {
         System.out.println("Learn more is displayed");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
+    public void checkGGL() {
+        Assert.assertEquals(sign.signInGoogle(), "Sign in with Google");
+        System.out.println("Google button works fine");
+    }
+
+    @Test(enabled = false)
+    public void resetPassFail(){
+        Assert.assertEquals(sign.resetPasswordInvalid("user111@gmail.com"), "Oops, that's not a match. Try again?");
+        System.out.println("Resetting password Failed");
+    }
+
+    @Test(enabled = false)
     public void addFolder(){
         Assert.assertEquals(sign.folderInMessages("ytpromo75@gmail.com", "besides11/"), true);
         System.out.println("New folder is created");
     }
 
-
+    @Test(enabled = true)
+    public void testPopUp(){
+        System.out.println(sign.popUp());
+    }
 
 }

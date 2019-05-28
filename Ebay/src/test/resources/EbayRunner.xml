@@ -15,9 +15,10 @@
 
     <test name="eBay Home">
         <classes>
-            <class name="testSignIn.TestSignInProcess"/>
-            <!--<class name="TestHomePage.TestHomePage"/>-->
+            <!--<class name="testSignIn.TestSignInProcess"/>-->
+            <class name="TestHomePage.TestHomePage"/>
             <!--<class name="testbrokenlink.BrokenlinkTest"/>-->
+            <!--<class name="testCommon.TestCommon"></class>-->
 
 
         </classes>

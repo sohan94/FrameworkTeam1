@@ -8,13 +8,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import reporting.TestLogger;
 
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends CommonAPI {
-    @FindBy(id = "gh-ac")
+    @FindBy(id= "gh-ac")
     public WebElement searchBar;
 
     @FindBy(id = "gh-cat")
@@ -124,6 +125,21 @@ public class HomePage extends CommonAPI {
     @FindBy(className = "b-img")
     public WebElement rolex;
 
+    @FindBy(linkText = "Daily Deals")
+    public WebElement dailyDeals;
+
+    @FindBy(partialLinkText = "Men's")
+    public WebElement selectDeal;
+
+    @FindBy(partialLinkText = "Learn more")
+    public WebElement authentication;
+
+    @FindBy(className = "article_title")
+    public WebElement returnText;
+
+
+
+
 
 
     public String productSearch(String word) {
@@ -131,12 +147,7 @@ public class HomePage extends CommonAPI {
         return driver.getTitle();
     }
 
-    public String searchClrSearch(String word, String newWord) throws InterruptedException {
-        searchBar.sendKeys(word, Keys.ENTER);
-        searchBar.clear();
-        searchBar.sendKeys(newWord, Keys.ENTER);
-        return driver.getTitle();
-    }
+
 
     public String searchArt(String word) {
         searchBar.sendKeys(word);
@@ -145,15 +156,7 @@ public class HomePage extends CommonAPI {
         //select.selectByVisibleText(word);
         select.selectByIndex(2);
         allCategory.sendKeys(Keys.ENTER);
-        return driver.getTitle();
-    }
-
-    public String searchBook(String category, String word) {
-        searchBar.sendKeys(word);
-        allCategory.click();
-        Select select = new Select(allCategory);
-        select.selectByVisibleText(category);
-        allCategory.sendKeys(Keys.ENTER);
+        getScreenshot(driver);
         return driver.getTitle();
     }
 
@@ -187,16 +190,6 @@ public class HomePage extends CommonAPI {
         return driver.getTitle();
     }
 
-    public String buyProduct(String product) {
-        searchBar.sendKeys(product, Keys.ENTER);
-        headphone.click();
-        Select select = new Select(selectHeadphone);
-        select.selectByIndex(1);
-        sleepFor(3);
-        addToList.click();
-        checkList.click();
-        return driver.getTitle();
-    }
 
     public void selectingRolex(){
 
@@ -215,13 +208,6 @@ public class HomePage extends CommonAPI {
 
     }
 
-    public String returnCountry() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(Country).perform();
-        china.click();
-        countryReturn.click();
-        return driver.getCurrentUrl();
-    }
 
     public String navigate() {
         homeGarden.click();
@@ -229,6 +215,24 @@ public class HomePage extends CommonAPI {
         driver.navigate().back();
         driver.navigate().forward();
         return before;
+    }
+
+
+    public String sellPage(){
+        sell.click();
+        businessTool.isEnabled();
+        help.isDisplayed();
+        comments.isDisplayed();
+        return driver.getCurrentUrl();
+    }
+
+    public String searchBook(String category, String word) {
+        searchBar.sendKeys(word);
+        allCategory.click();
+        Select select = new Select(allCategory);
+        select.selectByVisibleText(category);
+        allCategory.sendKeys(Keys.ENTER);
+        return driver.getTitle();
     }
 
 
@@ -255,21 +259,85 @@ public class HomePage extends CommonAPI {
 
     }
 
-    public String sellPage(){
-        sell.click();
-        businessTool.isEnabled();
-        help.isDisplayed();
-        comments.isDisplayed();
+
+    public void searchArray2(String a[]) {
+        for (String i  : a) {
+            searchBar.sendKeys(i, Keys.ENTER);
+            sleepFor(1);
+            searchBar.clear();
+        }
+
+    }
+
+    public String searchClrSearch(String word, String newWord) throws InterruptedException {
+        searchBar.sendKeys(word, Keys.ENTER);
+        captureScreenshot(driver,"clearSearch");
+        searchBar.clear();
+        searchBar.sendKeys(newWord, Keys.ENTER);
+        return driver.getTitle();
+    }
+
+
+    public String returnCountry() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(Country).perform();
+        china.click();
+        sleepFor(1);
+        countryReturn.click();
         return driver.getCurrentUrl();
     }
+
+    public String buyProduct(String product) {
+        searchBar.sendKeys(product, Keys.ENTER);
+        headphone.click();
+        Select select = new Select(selectHeadphone);
+        select.selectByIndex(1);
+        sleepFor(3);
+        addToList.click();
+        checkList.click();
+        return driver.getTitle();
+    }
+
 
     public void allCategories(){
         categories.click();
         Select select= new Select(  allcategories );
         List<WebElement> all=select.getOptions();
-        for (WebElement xpath: all){
-            System.out.println(xpath);
+        System.out.println(all.size());
+        sleepFor(3);
+        all.get(2).click();
+        for (WebElement i: all){
+            System.out.println(i.getText());
         }
+        TestLogger.log(getClass().getSimpleName() + ":  allCategories" + convertToString(new Object(){}.getClass().getEnclosingMethod().getName()));
+    }
+
+    public List<String> topBar(){
+        List<String> topList = getTextFromWebElements("ul[class='hl-cat-nav__container']");
+        return topList;
+    }
+
+    public void topBarCSS(){
+        List<WebElement> topList = getListOfWebElementsByCss("ul[class='hl-cat-nav__container']");
+
+        for(WebElement i:topList) {
+            System.out.println(i.getText() );
+
+        }
+
+    }
+
+    public String newTab(){
+        dailyDeals.click();
+        selectDeal.click();
+        authentication.click();
+        handleNewTab(driver);
+        return driver.getTitle();
+
+    }
+
+    public void search(){
+        typeOnElementNEnter("gh-ac","new phone", driver);
     }
 
 
