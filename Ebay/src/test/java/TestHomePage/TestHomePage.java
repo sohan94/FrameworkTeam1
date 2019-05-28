@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
+
 
 public class TestHomePage extends CommonAPI {
 
@@ -92,6 +94,18 @@ public class TestHomePage extends CommonAPI {
 
 
     @Test(enabled = false)
+    public void testSellPage(){
+        Assert.assertEquals(home.sellPage(),"https://www.ebay.com/sl/sell");
+        System.out.println("Home Page is working");
+    }
+
+
+    @Test(enabled = false)
+    public void productSorting(){
+        home.selectingRolex();
+    }
+
+    @Test(enabled = false)
     public void searchMultiple(){
         home.searchWithList("Samsung", "Apple", "Google");
 
@@ -103,18 +117,37 @@ public class TestHomePage extends CommonAPI {
     }
 
     @Test(enabled = false)
-    public void testSellPage(){
-        Assert.assertEquals(home.sellPage(),"https://www.ebay.com/sl/sell");
-        System.out.println("Home Page is working");
+    public void searchWithArray2(){
+        home.searchArray2(new String[]{"samsung", "Huawei", "Apple", "Google"});
+
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCategories(){
         home.allCategories();
     }
 
+
     @Test(enabled = false)
-    public void productSorting(){
-        home.selectingRolex();
+    public void printTopList(){
+
+       System.out.println(home.topBar());
     }
+
+    @Test(enabled = false)
+    public void printCSS(){
+        home.topBarCSS();
+    }
+
+    @Test(enabled = false)
+    public void testNewTab(){
+        System.out.println(home.newTab());
+    }
+
+    @Test(enabled = false)
+    public void testSearchLocator(){
+        home.search();
+        System.out.println(driver.getTitle());
+    }
+
 }

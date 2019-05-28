@@ -20,7 +20,7 @@ public class BrokenlinkTest extends CommonAPI {
     }
 
     @Test(enabled = true)
-    public void testCnnActivlinks() throws IOException {
+    public void testeBayActivlinks() throws IOException {
         brokenLin.linksbroken();
     }
 }

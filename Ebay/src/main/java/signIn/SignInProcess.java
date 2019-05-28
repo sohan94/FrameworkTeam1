@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import sun.jvm.hotspot.utilities.Assert;
 
 
 public class SignInProcess extends CommonAPI {
@@ -94,6 +95,9 @@ public class SignInProcess extends CommonAPI {
     @FindBy(linkText = "New Folder")
     public WebElement checkFolder;
 
+    @FindBy(className = "_50f7")
+    public WebElement fbConfirmation;
+
 
 
     public String validSignIn(String user, String pass) {
@@ -120,10 +124,12 @@ public class SignInProcess extends CommonAPI {
         return createAccText.getText();
     }
 
-    public boolean signInFB() {
+    public void signInFB() {
         signInButton.click();
-        return facebookSignin.isEnabled();
-
+        facebookSignin.click();
+        handleNewTab(driver);
+        sleepFor(2);
+        System.out.println(driver.getCurrentUrl());
     }
 
     public String signInGoogle() {
@@ -197,4 +203,9 @@ public class SignInProcess extends CommonAPI {
 
     }
 
+    public boolean popUp(){
+        signInButton.click();
+        boolean b = isPopUpWindowDisplayed(driver,"button[id=signin_fb_btn]");
+        return b;
+    }
 }
