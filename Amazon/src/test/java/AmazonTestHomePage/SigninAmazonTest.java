@@ -30,6 +30,7 @@ public class SigninAmazonTest extends CommonAPI {
     {
         sign.gotosignInPage();
         sign.checkForgetPassword();
+        System.out.println("test passed");
     }
     //check condition link and see if it goes to the right page.
     @Test (enabled =false)
