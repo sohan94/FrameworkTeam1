@@ -146,8 +146,8 @@ public class CommonAPI {
             String st = web.getText();
             text.add(st);
         }
-
         return text;
+
     }
 
     public static List<WebElement> getListOfWebElementsByCss(String locator) {
@@ -163,12 +163,12 @@ public class CommonAPI {
     }
 
     //Handling New Tabs
-    public static WebDriver handleNewTab(WebDriver driver1) {
-        String oldTab = driver1.getWindowHandle();
-        List<String> newTabs = new ArrayList<String>(driver1.getWindowHandles());
+    public static WebDriver handleNewTab(WebDriver driver) {
+        String oldTab = driver.getWindowHandle();
+        List<String> newTabs = new ArrayList<String>(driver.getWindowHandles());
         newTabs.remove(oldTab);
-        driver1.switchTo().window(newTabs.get(0));
-        return driver1;
+        driver.switchTo().window(newTabs.get(0));
+        return driver;
     }
 
     public static boolean isPopUpWindowDisplayed(WebDriver driver1, String locator) {

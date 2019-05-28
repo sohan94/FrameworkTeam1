@@ -16,6 +16,7 @@ public class CreateAccountAmazonTest extends CommonAPI {
         create = PageFactory.initElements(driver, CreateAccountAmazon.class);
     }
     //test the input of the create account page.
+
     @Test (enabled = false)
     public void CreateAccountInputTest()
     {

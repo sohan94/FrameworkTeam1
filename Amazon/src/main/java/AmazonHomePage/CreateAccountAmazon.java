@@ -45,7 +45,7 @@ public class CreateAccountAmazon extends CommonAPI {
     public String AlreadyHaveAnAcctLink()
     {
         signInlinkinCreatePage.click();
-        String title =driver.getTitle();
+        String title = driver.getTitle();
         return title;
     }
 }

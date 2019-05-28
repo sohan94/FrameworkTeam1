@@ -15,7 +15,7 @@
 
     <test name="Amazon Test">
          <classes>
-            <class name="AmazonTestHomePage.AmazonTestObjectHomePage"/>
+            <class name="AmazonTestHomePage.YourAcctObjectPageTest"/>
          </classes>
     </test>
 </suite>

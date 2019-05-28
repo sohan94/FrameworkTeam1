@@ -8,10 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import reporting.TestLogger;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-    public class AmazonObjectHomePage extends CommonAPI {
+public class AmazonObjectHomePage extends CommonAPI {
 
      @FindBy (css = "select[id='searchDropdownBox']")
      WebElement homepageDropdown;
@@ -55,6 +58,53 @@ import java.util.List;
      WebElement booksandAudibles;
      @FindBy (xpath = "//ul[@class='hmenu hmenu-visible hmenu-translateX']//li[3]//a[1]")
      WebElement books;
+     @FindBy (xpath = "//div[@class='navFooterLine navFooterLinkLine navFooterDescLine']/table/tbody/tr/td/a")
+     WebElement AmazonMusic;
+     @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[1]/a")
+     WebElement Careers;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[2]/a")
+    WebElement Blog;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[3]/a")
+    WebElement AboutAmazon;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[4]/a")
+    WebElement PressCenter;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[5]/a")
+    WebElement InvestorRelations;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[6]/a")
+    WebElement AmazonDevices;
+    @FindBy (xpath = "//*[@id=\"navFooter\"]/div[1]/div/div[1]/ul/li[7]/a")
+    WebElement Tour;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[1]")
+    WebElement SellAmazon;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[2]")
+    WebElement SellunderBrand;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[3]")
+    WebElement SellHandmade;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[4]")
+    WebElement SellServices;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[5]")
+    WebElement SellBusiness;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[6]")
+    WebElement SellApp;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[7]")
+    WebElement BecomeAffiliate;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[8]")
+    WebElement Advertise;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[9]")
+    WebElement SelfPublish;
+    @FindBy (xpath = "//div[@class='navFooterVerticalRow navAccessibility']/div[3]/ul/li[10]")
+    WebElement Opportunity;
+    @FindBy (xpath = "//a[@id='icp-nav-flyout']")
+    WebElement language;
+    @FindBy (xpath = "//a[@id='icp-touch-link-language']")
+    WebElement languagePopUp;
+    @FindBy (css = "button.a-button-text")
+    WebElement popUpCancel;
+    @FindBy (xpath = "//a[@id='icp-touch-link-country']")
+    WebElement Country;
+    @FindBy (css = "span.a-button-text.a-declarative")
+    WebElement languageSelection;
+
 
 
     public void searchBarInput(String search) throws InterruptedException {
@@ -62,6 +112,8 @@ import java.util.List;
         sleepFor(2);
         searchbar.sendKeys(Keys.ENTER);
     }
+
+
     public void AllDropdownHomepage(String Catergory)
     {
         Select select = new Select(homepageDropdown);
@@ -70,12 +122,16 @@ import java.util.List;
         homepageDropdown.sendKeys(Keys.ENTER);
         sleepFor(5);
     }
+
+    // check to see if the tabs under the seaerchbar is working properly
+
     public String TabsunderSearcbar(String tablink)
     {
-       if (tablink.equalsIgnoreCase("todays deal")){
+        if (tablink.equalsIgnoreCase("todays deal")){
            TodaysDeal.click();
            System.out.println(driver.getTitle());
-       }
+           TestLogger.log(getClass().getSimpleName() + ": " + convertToString(new Object(){}.getClass().getEnclosingMethod().getName()));
+        }
         else if (tablink.equalsIgnoreCase("your amazon.com"))
         {
             YourAmazon.click();
@@ -111,8 +167,11 @@ import java.util.List;
            Sell.click();
            System.out.println(driver.getTitle());
        }
+
         return driver.getTitle();
+
     }
+
 
     public String GetreadyforSummerList(String links)
     {
@@ -155,6 +214,7 @@ import java.util.List;
     }
 
 
+
     public void hoveroverLanguage()
     {
         Actions action = new Actions(driver);
@@ -162,11 +222,13 @@ import java.util.List;
         sleepFor(3);
     }
 
+
     public void icononHomepage()
     {
         iconHomepage.click();
         sleepFor(2);
     }
+
 
     public String onetabfromicon()
     {
@@ -175,7 +237,147 @@ import java.util.List;
         System.out.println(driver.getTitle());
         return driver.getTitle();
     }
+
+    public void multipleWindowswithShift()
+    {
+        Actions a = new Actions(driver);
+        a.keyDown(Keys.SHIFT).click(AmazonMusic).perform();
+        sleepFor(5);
+        System.out.println(driver.getTitle()); //before switching to the child window
+        Set<String> windows= driver.getWindowHandles();
+        Iterator<String> list = windows.iterator();
+        String parentWindow=list.next();
+        String childWindow= list.next();
+        driver.switchTo().window(childWindow);
+        System.out.println(driver.getTitle()); // after switching to the child window
+        driver.switchTo().window(parentWindow);
+        System.out.println(driver.getTitle()); //switching back
     }
+
+    public void multipletabs()
+    {
+        Actions a = new Actions(driver);
+        a.keyDown(Keys.CONTROL).click(AmazonMusic).perform();
+        sleepFor(5);
+        System.out.println(driver.getTitle());
+        handleNewTab(driver);
+        System.out.println(driver.getTitle());
+
+    }
+
+    public void CareerLink()
+    {
+        Careers.click();
+    }
+
+    public void Blog()
+    {
+        Blog.click();
+    }
+
+    public void AboutAmazon()
+    {
+        AboutAmazon.click();
+    }
+
+    public void PressCenter()
+    {
+        PressCenter.click();
+    }
+
+    public void InvestorRelations()
+    {
+        InvestorRelations.click();
+    }
+
+    public void AmazonDevices()
+    {
+        AmazonDevices.click();
+    }
+
+    public void Tour()
+    {
+        Tour.click();
+    }
+
+    public void SellonAmazon()
+    {
+        SellAmazon.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SellunderBrand()
+    {
+        SellunderBrand.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SellHandmade()
+    {
+        SellHandmade.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SellServices()
+    {
+        SellServices.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SellBusiness()
+    {
+        SellBusiness.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SellApps()
+    {
+        SellApp.click();
+        System.out.println(driver.getTitle());
+    }
+    public void BecomeAffiliate()
+    {
+        BecomeAffiliate.click();
+        System.out.println(driver.getTitle());
+    }
+    public void Advertise()
+    {
+        Advertise.click();
+        System.out.println(driver.getTitle());
+    }
+    public void SelfPublished()
+    {
+        SelfPublish.click();
+        System.out.println(driver.getTitle());
+    }
+    public void Opportunity()
+    {
+        Opportunity.click();
+        System.out.println(driver.getTitle());
+    }
+
+    public void gotoLanguagePage()
+    {
+        language.click();
+        System.out.println(driver.getTitle());
+    }
+
+    public void LanguagePopUp()
+    {
+        languagePopUp.click();
+        sleepFor(2);
+        popUpCancel.click();
+    }
+
+    public void CountryPopUp()
+    {
+        Country.click();
+        sleepFor(2);
+        popUpCancel.click();
+    }
+
+    public void CountryDropdown()
+    {
+        Country.click();
+        languageSelection.sendKeys(Keys.ENTER);
+        sleepFor(3);
+    }
+}
 
 
 
